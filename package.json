@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
+    "naive-ui": "^2.29.0",
     "vite": "^2.9.9",
     "vue": "^3.2.25",
-    "vue-tsc": "^0.34.7"
+    "vue-tsc": "^0.35.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.0",
