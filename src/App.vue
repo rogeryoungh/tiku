@@ -1,9 +1,29 @@
 <script setup lang="ts">
-import { NButton } from 'naive-ui';
+import { NMessageProvider, NConfigProvider, NLayout } from 'naive-ui';
 </script>
 
 <template>
-  <n-button>hhh</n-button>
+  <n-config-provider>
+    <n-layout>
+      <div id="container">
+        <n-message-provider>
+          <router-view />
+        </n-message-provider>
+      </div>
+    </n-layout>
+  </n-config-provider>
 </template>
 
-<style></style>
+<style lang="less" scoped>
+#app,
+#container {
+  height: 100vh;
+  width: 100vw;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
