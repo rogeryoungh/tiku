@@ -1,0 +1,14 @@
+name = '样例'
+lastUpdateTime = '2022-06-10 00:00:00'
+
+[[problems]]
+id = 1
+content = 'HHHH'
+answer = 'A'
+analysis = '无'
+
+[[problems]]
+id = 2
+content = 'HHHH'
+answer = 'A'
+analysis = '无'
