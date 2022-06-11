@@ -1,7 +1,7 @@
 import { App } from 'vue';
 import MarkdownIt from 'markdown-it';
 
-let md = new MarkdownIt();
+let md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 
 export default {
   install: (app: App) => {
