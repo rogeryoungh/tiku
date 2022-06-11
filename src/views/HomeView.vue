@@ -18,7 +18,7 @@ const reader = new TomlReader();
 const route = useRoute();
 const message = useMessage();
 
-const url = String(route.query.url || 'http://10.42.0.1:4321/tmp.toml');
+const urlRef = ref(String(route.query.url || '/data/tmp.toml'));
 
 const dataRef = ref<any>({});
 
@@ -27,7 +27,8 @@ const parserData = (input: any) => {
   let data = reader.result;
   console.log(data);
   dataRef.value.name = data.name;
-  dataRef.value.url = url;
+  dataRef.value.url = urlRef.value;
+  dataRef.value.description = data.description;
   let problems = [];
   for (let p of data.problems) {
     problems.push({
@@ -52,6 +53,8 @@ const fetchData = (url: string) => {
     .catch(e => {
       console.error(e);
       message.error('加载失败');
+      urlRef.value = '/data/tmp.toml';
+      fetchData(urlRef.value);
     });
 };
 
@@ -65,7 +68,7 @@ const showAll = () => {
 };
 
 onMounted(() => {
-  fetchData(url);
+  fetchData(urlRef.value);
 });
 </script>
 
@@ -74,6 +77,13 @@ onMounted(() => {
     <div v-if="dataRef != null">
       <n-h1> {{ dataRef.name }} </n-h1>
       <n-p> URL：{{ dataRef.url }}</n-p>
+      <n-p
+        v-dompurify-html="dataRef.description"
+        v-markdown
+        v-highlight
+        v-katex
+        class="markdown-body"
+      />
       <n-button type="primary" @click="showAll">
         {{ isShowAll ? '全部展开' : '全部闭合' }}
       </n-button>
@@ -123,5 +133,8 @@ onMounted(() => {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
+}
+.markdown-body {
+  margin-bottom: 20px;
 }
 </style>

@@ -7,10 +7,14 @@ export default {
   install: (app: App) => {
     app.directive('markdown', {
       updated(el: HTMLElement) {
-        el.innerHTML = md.render(el.innerHTML);
+        if (!el.innerHTML.startsWith('<p>')) {
+          el.innerHTML = md.render(el.innerHTML);
+        }
       },
       mounted(el: HTMLElement) {
-        el.innerHTML = md.render(el.innerHTML);
+        if (!el.innerHTML.startsWith('<p>')) {
+          el.innerHTML = md.render(el.innerHTML);
+        }
       }
     });
   }

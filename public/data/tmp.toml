@@ -1,0 +1,33 @@
+name = '样例'
+lastUpdateTime = '2022-06-10 00:00:00'
+description = '''
+这是一个无后端的题目展示页面，使用方式。
+
+```url
+https://tiku.rogery.dev/#/?url=/data/tmp.toml
+```
+
+题库格式采用了 Toml 格式，并支持 MarkDown 和 KaTeX。样例文件可以看这里 [/data/tmp.toml](/data/tmp.toml)。
+
+如果从其他网站引用代码，请确认源网站支持 CORS。
+'''
+
+[[problems]]
+id = 1
+content = '''
+请计算
+
+$$
+\sum_{n=1}^\infty \frac{1}{n^2}
+$$
+'''
+answer = '''
+$$\frac{\pi^2}{6}$$
+'''
+analysis = '无'
+
+[[problems]]
+id = 2
+content = 'HHHH'
+answer = 'A'
+analysis = '无'

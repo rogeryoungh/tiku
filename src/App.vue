@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { NMessageProvider, NConfigProvider, NLayout } from 'naive-ui';
+
+import 'github-markdown-css';
 </script>
 
 <template>
