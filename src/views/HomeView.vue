@@ -79,7 +79,7 @@ onMounted(() => {
       <n-p>
         URL：{{ dataRef.url }}，最后更新时间：{{ dataRef.lastUpdateTime }}
       </n-p>
-      <n-p
+      <article
         v-dompurify-html="dataRef.description"
         v-markdown
         v-highlight
@@ -93,7 +93,7 @@ onMounted(() => {
         <n-list-item v-for="p of dataRef.problems" :key="p.id">
           <n-card>
             <n-h2> 题目 </n-h2>
-            <n-p
+            <article
               v-dompurify-html="p.content"
               v-markdown
               v-highlight
@@ -105,7 +105,7 @@ onMounted(() => {
             </n-button>
             <n-p v-if="p.show">
               <n-h3> 答案 </n-h3>
-              <n-p
+              <article
                 v-dompurify-html="p.answer"
                 v-markdown
                 v-highlight
@@ -115,7 +115,7 @@ onMounted(() => {
             </n-p>
             <n-p v-if="p.show && p.analysis !== ''">
               <n-h3> 分析 </n-h3>
-              <n-p
+              <article
                 v-dompurify-html="p.analysis"
                 v-markdown
                 v-highlight
