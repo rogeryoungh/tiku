@@ -29,6 +29,7 @@ const parserData = (input: any) => {
   dataRef.value.name = data.name;
   dataRef.value.url = urlRef.value;
   dataRef.value.description = data.description;
+  dataRef.value.lastUpdateTime = data.lastUpdateTime;
   let problems = [];
   for (let p of data.problems) {
     problems.push({
@@ -47,7 +48,6 @@ const fetchData = (url: string) => {
   fetch(url)
     .then(res => res.text())
     .then(data => {
-      console.log(data);
       parserData(data);
     })
     .catch(e => {
@@ -76,7 +76,9 @@ onMounted(() => {
   <div id="home-container">
     <div v-if="dataRef != null">
       <n-h1> {{ dataRef.name }} </n-h1>
-      <n-p> URL：{{ dataRef.url }}</n-p>
+      <n-p>
+        URL：{{ dataRef.url }}，最后更新时间：{{ dataRef.lastUpdateTime }}
+      </n-p>
       <n-p
         v-dompurify-html="dataRef.description"
         v-markdown
@@ -136,5 +138,8 @@ onMounted(() => {
 }
 .markdown-body {
   margin-bottom: 20px;
+  :deep(p) {
+    white-space: pre;
+  }
 }
 </style>
