@@ -134,12 +134,9 @@ onMounted(() => {
 #home-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px;
 }
 .markdown-body {
   margin-bottom: 20px;
-  :deep(p) {
-    white-space: pre;
-  }
 }
 </style>
