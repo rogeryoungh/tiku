@@ -1,4 +1,3 @@
-import 'katex/dist/katex.css';
 import renderMathInElement from 'katex/contrib/auto-render';
 import { App } from 'vue';
 
