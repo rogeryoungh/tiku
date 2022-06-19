@@ -13,14 +13,20 @@ export default defineConfig({
         'highlight.js',
         'markdown-it',
         'katex',
-        'katex/contrib/auto-render'
+        'katex/contrib/auto-render',
+        'vue',
+        'vue-router',
+        'dompurify'
       ],
       plugins: [
         externalGlobals({
           'highlight.js': 'hljs',
           'markdown-it': 'markdownit',
           katex: 'katex',
-          'katex/contrib/auto-render': 'renderMathInElement'
+          'katex/contrib/auto-render': 'renderMathInElement',
+          vue: ['Vue'],
+          'vue-router': ['VueRouter'],
+          dompurify: 'DOMPurify'
         })
       ]
     }
