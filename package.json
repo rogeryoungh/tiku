@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sgarciac/bombadil": "^2.3.0",
+    "@ltd/j-toml": "^1.30.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.5.1",

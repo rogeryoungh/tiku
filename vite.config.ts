@@ -7,6 +7,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 export default defineConfig({
   plugins: [vue(), visualizer()],
   build: {
+    target: 'esnext',
     rollupOptions: {
       external: [
         'highlight.js',

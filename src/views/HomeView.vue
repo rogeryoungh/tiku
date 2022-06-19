@@ -11,10 +11,10 @@ import {
   NH2
 } from 'naive-ui';
 import { onMounted, ref } from 'vue';
-import { TomlReader } from '@sgarciac/bombadil';
 import { useRoute } from 'vue-router';
 
-const reader = new TomlReader();
+import TOML from '@ltd/j-toml';
+
 const route = useRoute();
 const message = useMessage();
 
@@ -23,8 +23,7 @@ const urlRef = ref(String(route.query.url || '/data/tmp.toml'));
 const dataRef = ref<any>({});
 
 const parserData = (input: any) => {
-  reader.readToml(input);
-  let data = reader.result;
+  let data: any = TOML.parse(input, 1, '\n');
   console.log(data);
   dataRef.value.name = data.name;
   dataRef.value.url = urlRef.value;
