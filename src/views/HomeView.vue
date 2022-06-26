@@ -14,17 +14,17 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 import TOML from '@ltd/j-toml';
+import VueMarkdown from '../components/VueMarkdown.vue';
 
 const route = useRoute();
 const message = useMessage();
 
 const urlRef = ref(String(route.query.url || '/data/tmp.toml'));
 
-const dataRef = ref<any>({});
+const dataRef = ref<any>({ description: '', problems: null });
 
 const parserData = (input: any) => {
   let data: any = TOML.parse(input, 1, '\n');
-  console.log(data);
   dataRef.value.name = data.name;
   dataRef.value.url = urlRef.value;
   dataRef.value.description = data.description;
@@ -78,49 +78,25 @@ onMounted(() => {
       <n-p>
         URL：{{ dataRef.url }}，最后更新时间：{{ dataRef.lastUpdateTime }}
       </n-p>
-      <article
-        v-dompurify-html="dataRef.description"
-        v-markdown
-        v-highlight
-        v-katex
-        class="markdown-body"
-      />
+      <vue-markdown :content="dataRef.description" />
       <n-button type="primary" @click="showAll">
         {{ isShowAll ? '全部展开' : '全部闭合' }}
       </n-button>
-      <n-list v-if="dataRef.problems != null">
+      <n-list v-if="dataRef.problems !== null">
         <n-list-item v-for="p of dataRef.problems" :key="p.id">
           <n-card>
             <n-h2> 题目 </n-h2>
-            <article
-              v-dompurify-html="p.content"
-              v-markdown
-              v-highlight
-              v-katex
-              class="markdown-body"
-            />
+            <vue-markdown :content="p.content" />
             <n-button secondary type="primary" @click="p.show = !p.show">
               查看解析
             </n-button>
             <n-p v-if="p.show">
               <n-h3> 答案 </n-h3>
-              <article
-                v-dompurify-html="p.answer"
-                v-markdown
-                v-highlight
-                v-katex
-                class="markdown-body"
-              />
+              <vue-markdown :content="p.answer" />
             </n-p>
             <n-p v-if="p.show && p.analysis !== ''">
               <n-h3> 分析 </n-h3>
-              <article
-                v-dompurify-html="p.analysis"
-                v-markdown
-                v-highlight
-                v-katex
-                class="markdown-body"
-              />
+              <vue-markdown :content="p.analysis" />
             </n-p>
           </n-card>
         </n-list-item>
